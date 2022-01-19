@@ -15,10 +15,30 @@ import { SelectLanguage } from '../../redux/langReducer/langSelectors'
 
 const Modal = ({data,displayStatus, closeModal, lang}) => {
     const {room,teacher,type, time, fullName} = data
+    const langVar = {
+        event: [
+            {
+                "en": "Seminar",
+                "sk": "Cvičenie"
+            },
+            {
+                "en": "Lecture",
+                "sk": "Prednáška"
+            }
+        ],
+        connect: {
+            en: "Connect",
+            sk: "Pripojiť sa"
+        }
+    }
+
+
+   
+
     return (
-        <ModalContainer displayStatus={displayStatus} >
-            <ModalBackground displayStatus={displayStatus} onClick={() => closeModal()} />
-            <ModalWindow displayStatus={displayStatus} link={data.link}>
+        <ModalContainer displayStatus={displayStatus === "subject" ? 1 : 0} >
+            <ModalBackground displayStatus={displayStatus === "subject" ? 1 : 0} onClick={() => closeModal()} />
+            <ModalWindow displayStatus={displayStatus === "subject" ? 1 : 0} link={data.link}>
                 <OffToggle onClick={() => closeModal()} />
                 <h2>{fullName}</h2>
                 <p>{teacher}</p>
@@ -38,11 +58,11 @@ const Modal = ({data,displayStatus, closeModal, lang}) => {
                     <div>
                         <Category>
                             <School />
-                            <p>{type === 1 ? 'Cvičenie' : 'Prednáška'}</p>
+                            <p>{type ? langVar.event[type-1][lang] : ''}</p>
                         </Category>
                         <Category>
                             <Web />
-                            <p>Cisco Webex</p>
+                            <p>{data.connectionType}</p>
                         </Category>
                     </div>
               
@@ -50,7 +70,7 @@ const Modal = ({data,displayStatus, closeModal, lang}) => {
         
                 <span></span>
           
-                <p>{lang === "en" ? "Connect" : "Pripojiť sa"}</p>
+                <p>{langVar.connect[lang]}</p>
             </ModalWindow>
             
         </ModalContainer>

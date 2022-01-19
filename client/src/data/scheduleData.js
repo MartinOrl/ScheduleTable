@@ -194,11 +194,14 @@ const WeeklyData = {
                     link: 'LMAO',
                     time: '15:00 - 16:50',
                     startTime: 1500,
-                    endTime: 1650,
+                    endTime: 1632,
                     diff: 1.5,
                     teacher: 'K. Rudenko',
                     connectionType: 'Google Meet'
                 },
+
+
+                
             ]
         },
         {

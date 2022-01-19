@@ -1,31 +1,28 @@
 
-import Schedule from './pages/schedule/schedule';
-import { createStructuredSelector } from 'reselect';
-import { SelectModal } from './redux/modalReducer/modalSelectors';
-import { connect } from 'react-redux';
-import Modal from './components/modal/modal';
-import EventContainer from './components/eventCountdown/eventCountdown';
+
 import Navigation from './components/navigation/navigation';
+import { Routes, Route } from 'react-router';
+
+import Home from './pages/home/home'
+import Settings from './pages/settings/settings';
 
 
 
 
-function App({modal, lang}) {
+function App() {
 
   return (
-    <div className='home'>
+    <div>
       <Navigation />
-      <Modal {...modal} />
-      <EventContainer />
-      <Schedule />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route exact path="/settings" element={<Settings/>} />
+      </Routes>
       
     </div>
   );
 }
 
-const mapState = createStructuredSelector({
-  modal: SelectModal,
 
-})
 
-export default connect(mapState,null)(App);
+export default App;

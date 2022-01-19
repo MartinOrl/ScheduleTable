@@ -23,7 +23,7 @@ export const ComponentContainer = styled.div`
         color: #fff;
         width: 280px;
         position: relative;
-        z-index: 15;
+        z-index: 8;
         cursor: pointer;
        
         h1{
@@ -53,7 +53,11 @@ export const ComponentContainer = styled.div`
 export const MasterContainer = styled.div`
     color: #fff;
     padding: 0 0 0 96px;
-    &>h2{
-        font-size: 32px
+
+    &>div{
+        &>h2{
+            font-size: 32px;
+        }
+        min-height: 240px;
     }
 `

@@ -7,6 +7,8 @@ import { ToggleModal } from '../../redux/modalReducer/modalActions'
 import { ComponentContainer, MasterContainer, Timer } from './eventCountdownStyles'
 import { connect } from 'react-redux';
 import { SetActiveSubject } from '../../redux/activeSubjectReducer/activeSubjectActions'
+import { createStructuredSelector } from 'reselect';
+import { SelectLanguage } from './../../redux/langReducer/langSelectors';
 
 const getTimestamp = () => {
     let timestamp = new Date(Date.now()).getHours()*3600 + new Date(Date.now()).getMinutes()*60 + new Date(Date.now()).getSeconds()
@@ -72,7 +74,7 @@ const renderer = ({hours, minutes, seconds, completed}) => {
     return <Timer>{("0" + hours).slice(-2)} : {("0" + minutes).slice(-2)} : {("0" + seconds).slice(-2)}</Timer>
 }
 
-const EventContainer = ({toggleModal, setActiveSubject}) => {
+const EventContainer = ({toggleModal, setActiveSubject, lang}) => {
 
     const [data, setData] = useState(false)
     
@@ -81,41 +83,73 @@ const EventContainer = ({toggleModal, setActiveSubject}) => {
         setInterval(() => {
             setData(false)
         }, data.timeDiff*1000)
-        setData(data)
         setActiveSubject(data.id)
+        setData(data)
+        
     }, [data])
     
-
+    const langVar = {
+        "event": [
+            {
+                "en": "Upcoming event",
+                "sk": "Následujúca hodina"
+            },
+            {
+                "en": "Current event",
+                "sk": "Súčasná hodina"
+            }
+        ],
+        "type": [
+            {
+                "en": "Seminar",
+                "sk": "Cvičenie"
+            },
+            {
+                "en": "Lecture",
+                "sk": "Prednáška"
+            }
+            
+        ]
+    }
 
     return (
         <MasterContainer>
-            <h2>Events</h2>
-            {
-                data 
-                ? 
-                <ComponentContainer>
-                    <p>{data.eventType === 1 ? "Next" : "Current"} Event</p>
-                    <div onClick={() => toggleModal(data)}>
-                        <div>
-                            <h1>{data.name}</h1>
-                            <p>{data.type === 1 ? "Cvičenie" : "Prednáška"}</p>
+            <div>
+                <h2>Events</h2>
+                {
+                    data 
+                    ? 
+                    <ComponentContainer>
+                        <p>{data.eventType === 1 ? langVar.event[0][lang] : langVar.event[1][lang]}</p>
+                        <div onClick={() => toggleModal({data: data,subject:"subject"})}>
+                            <div>
+                                <h1>{data.name}</h1>
+                                <p>{data.type !== "dummy" ? langVar.type[data.type-1][lang] : ""}</p>
+                            </div>
+                            <div>
+                                <p>{data.teacher}</p>
+                                <Countdown date={Date.now() + data.timeDiff*1000} renderer={renderer} />
+                            </div>
                         </div>
-                        <div>
-                            <p>{data.teacher}</p>
-                            <Countdown date={Date.now() + data.timeDiff*1000} renderer={renderer} />
-                        </div>
-                    </div>
-                </ComponentContainer> 
-                : 'All events are finished for today'
-            }
+                    </ComponentContainer> 
+                    : 'All events are finished for today'
+                }
+            </div>
+
+
+            
            
         </MasterContainer>
     )
 }
+
+const mapState = createStructuredSelector({
+    lang: SelectLanguage
+})
 
 const mapDispatch = dispatch => ({
     toggleModal: data => dispatch(ToggleModal(data)),
     setActiveSubject: id => dispatch(SetActiveSubject(id))
 })
 
-export default connect(null,mapDispatch)(EventContainer)
+export default connect(mapState,mapDispatch)(EventContainer)

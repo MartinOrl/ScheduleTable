@@ -23,7 +23,7 @@ export const Componentcontainer = styled.div`
         p{
             margin: 0;
             font-size: 16px;
-            opacity: 0.5;
+            opacity: ${props => props.active ? '0.75' : '0.5'};
 
         }
     }

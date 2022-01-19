@@ -9,8 +9,8 @@ const  ModalReducer = (state = INITIAL, action) => {
     switch(action.type){
         case ModalActionTypes.TOGGLE_MODAL:
             return {
-                displayStatus: true,
-                data: action.payload
+                displayStatus: action.payload.subject,
+                data: action.payload.data
             }
         case ModalActionTypes.CLOSE_MODAL:
             return{

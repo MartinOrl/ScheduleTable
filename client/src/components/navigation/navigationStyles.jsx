@@ -23,7 +23,7 @@ export const ComponentContainer = styled.div`
     left: 0;
     top: 0;
     z-index: 200;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     box-sizing: border-box;
 `
 

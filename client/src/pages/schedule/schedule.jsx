@@ -37,7 +37,7 @@ const ScheduleTable = ({toggleModal, lang, activeSubject}) => {
                                     if(subject.type === "dummy"){
                                         return <Dummy key={i} diff={subject.diff} />
                                     }
-                                    return <TableEvent key={i} active={subject.id === activeSubject && day.id.slice(0,3) === days[new Date(Date.now()).getDay()-1]}  {...subject} action={() => toggleModal(subject)} />
+                                    return <TableEvent key={i} active={subject.id === activeSubject && day.id.slice(0,3) === days[new Date(Date.now()).getDay()-1]}  {...subject} action={() => toggleModal({data: subject,subject:"subject"})} />
                                 })
                             }
                         </div>

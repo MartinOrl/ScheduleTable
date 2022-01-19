@@ -4,13 +4,17 @@ import { MasterContainer, ComponentContainer, PageLink, CollapseToggle, Navigati
 
 
 import { useEffect } from 'react';
+import { ToggleModal } from '../../redux/modalReducer/modalActions';
+import { connect } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router';
 
 
 
-const Navigation = () => {
+const Navigation = ({toggleModal}) => {
     const [active, setActive] = useState('dashboard')
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(true)
     const [position, setPosition] = useState(0)
+    const navigate = useNavigate()
 
     useEffect(() => {
         switch(active){
@@ -24,6 +28,23 @@ const Navigation = () => {
                 break;
         }
     }, [active])
+
+    let location = useLocation().pathname
+    
+    useEffect(() => {
+        
+        switch(location){
+            case '/':
+                setActive("dashboard");
+                break;
+            case '/settings':
+                setActive("settings");
+                break;
+            default:
+                break;
+        }
+        
+    }, [])
 
 
     
@@ -45,7 +66,7 @@ const Navigation = () => {
                 <NavigationLinks >
                     <NavSlider position={position} />
                     <div>
-                        <PageLink collapsed={collapsed} active={active === "dashboard" ? 1 : 0} onClick={() => {setActive("dashboard"); setCollapsed(true)}} >
+                        <PageLink collapsed={collapsed} active={active === "dashboard" ? 1 : 0} onClick={() => {setActive("dashboard"); setCollapsed(true); navigate("/")}} >
                             <StyledHome active={active === "dashboard" ? 1 : 0} />
                             <h2>Schedule</h2>
                         </PageLink>
@@ -54,8 +75,8 @@ const Navigation = () => {
         
                     <Settings>
                         <span></span>
-                        <PageLink type={'settings'} collapsed={collapsed} active={active === "settings" ? 1 : 0} onClick={() => {setActive("settings"); setCollapsed(true)}} >
-                            <StyledSettings active={active === "settings" ? 1 : 0} />
+                        <PageLink type={'settings'} collapsed={collapsed} active={active === "settings" ? 1 : 0} onClick={() => {setActive("settings"); setCollapsed(true); navigate("/settings")}} >
+                            <StyledSettings active={active === "settings" ? 1 : 0}  />
                             <h2>Settings</h2>
                         </PageLink>
                     </Settings>
@@ -68,4 +89,8 @@ const Navigation = () => {
     )
 }
 
-export default Navigation
+const mapDispatch = dispatch => ({
+    toggleModal: data => dispatch(ToggleModal(data))
+})
+
+export default connect(null,mapDispatch)(Navigation)

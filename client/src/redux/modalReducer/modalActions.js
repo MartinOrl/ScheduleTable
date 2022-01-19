@@ -5,7 +5,7 @@ export const ModalActionTypes = {
 
 export const ToggleModal = data => ({
     type: ModalActionTypes.TOGGLE_MODAL,
-    payload: data
+    payload: data,
 })
 
 export const CloseModal = () => ({

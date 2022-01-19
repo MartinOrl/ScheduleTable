@@ -8,7 +8,7 @@ export const ModalContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: ${props => props.displayStatus ? '15' : '-1'};
-    transition: 450ms ease-in-out;
+    transition: 250ms ease-in-out;
 `
 
 export const ModalBackground = styled.div`
@@ -17,7 +17,7 @@ export const ModalBackground = styled.div`
     width: 100%;
     height: 100%;
     position: absolute;
-    transition: 450ms ease-in-out;
+    transition: 250ms ease-in-out;
     background: ${props => props.displayStatus ? 'rgba(0,0,0,.65)' : 'rgba(0,0,0,0)'};
 `
 
@@ -27,8 +27,6 @@ export const OffToggle = styled(Close)`
     right: 40px;
     cursor: pointer;
 `
-
-
 
 export const ModalWindow = styled.div`
     padding: 16px 24px 32px;
@@ -41,7 +39,7 @@ export const ModalWindow = styled.div`
     left: 50%;
     transform: translateX(-50%);
     top: ${props => props.displayStatus ? '15%' : '-80%'};
-    transition: 450ms ease-in-out;
+    transition: 250ms ease-in-out;
     opacity: ${props => props.displayStatus ? 1 : 0};
 
     
@@ -71,27 +69,5 @@ export const ModalWindow = styled.div`
         opacity: ${props => props.link ? '1' : '0.6'}
         
 
-    }
-`
-
-export const CategoriesContainer = styled.div`
-  
-    box-sizing: border-box;
-    &>div{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: 32px;
-        
-    }
-`
-
-export const Category = styled.div`
-    width: 196px;
-    svg{
-        opacity: 0.3;
-    }
-    p{
-        margin: 8px 0 0 0;
     }
 `
