@@ -1,0 +1,24 @@
+{
+  "name": "stu-table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js",
+    "build": "cd client && npm run build",
+    "dev": "npm run server && npm run client",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install && npm install --only-dev --no-shrinkwrap && npm run build"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
