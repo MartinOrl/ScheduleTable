@@ -7,6 +7,9 @@ export const PageContainer = styled.div`
     &>div:last-of-type{
         border-bottom: none;
     }
+    @media screen and (max-width: 768px){
+        width: 100%;
+    }
 `
 
 export const MasterContainer = styled.div`
@@ -14,6 +17,11 @@ export const MasterContainer = styled.div`
     &>h2{
         font-size: 32px;
         color: #fff
+    }
+    @media screen and (max-width: 768px){
+        margin-left: unset;
+        padding: 0 0 0 24px;
+        width: 90%;
     }
 `
 
@@ -31,5 +39,17 @@ export const Week = styled.div`
     }
     &>div{
         display: flex;
+    }
+    @media screen and (max-width: 768px){
+        display: ${props => props.match ? 'flex' : 'none'};
+        flex-direction: column;
+        background: none;
+        width: 100%;
+        &>h1{
+            margin: 0 0 24px;
+        }
+        &>div{
+            flex-direction: column;
+        }
     }
 `

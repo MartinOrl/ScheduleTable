@@ -2,13 +2,17 @@ import styled from "styled-components";
 import {ReactComponent as Close} from '../../assets/close.svg'
 
 export const ModalContainer = styled.div`
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: ${props => props.displayStatus ? '15' : '-1'};
     transition: 450ms ease-in-out;
+
+    @media screen and (max-width: 768px){
+        z-index: ${props => props.displayStatus ? '1500' : '-1'};
+    }
 `
 
 export const ModalBackground = styled.div`
@@ -44,7 +48,7 @@ export const ModalWindow = styled.div`
     transition: 450ms ease-in-out;
     opacity: ${props => props.displayStatus ? 1 : 0};
 
-    
+
     &>span{
         width: 90%;
         border-radius: 16px;
@@ -69,9 +73,16 @@ export const ModalWindow = styled.div`
         cursor: ${props => props.link ? 'pointer' : 'not-allowed'};
         margin: 32px auto 0;
         opacity: ${props => props.link ? '1' : '0.6'}
-        
-
     }
+
+    @media screen and (max-width: 768px){
+        width: 90%;
+        box-sizing: border-box;
+        &>h2{
+            width: 80%;
+        }
+    }
+    
 `
 
 export const CategoriesContainer = styled.div`
@@ -84,6 +95,8 @@ export const CategoriesContainer = styled.div`
         margin-bottom: 32px;
         
     }
+
+    
 `
 
 export const Category = styled.div`
@@ -93,5 +106,8 @@ export const Category = styled.div`
     }
     p{
         margin: 8px 0 0 0;
+    }
+    @media screen and (max-width: 768px){
+        width: 45%;
     }
 `

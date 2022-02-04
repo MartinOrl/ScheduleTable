@@ -7,10 +7,12 @@ import { useEffect } from 'react';
 import { ToggleModal } from '../../redux/modalReducer/modalActions';
 import { connect } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
+import { createStructuredSelector } from 'reselect';
+import { SelectLanguage } from '../../redux/langReducer/langSelectors';
 
 
 
-const Navigation = ({toggleModal}) => {
+const Navigation = ({toggleModal, lang}) => {
     const [active, setActive] = useState('dashboard')
     const [collapsed, setCollapsed] = useState(true)
     const [position, setPosition] = useState(0)
@@ -47,7 +49,22 @@ const Navigation = ({toggleModal}) => {
     }, [])
 
 
-    
+    const langVar = {
+        "schedule": {
+            en: "Schedule",
+            sk: "Rozvrh",
+            ge: "Zeitplan",
+            ru: "расписание",
+            ua: "розклад"
+        },
+        "settings": {
+            en: "Settings",
+            sk: "Nastavenia",
+            ge: "Einstellungen",
+            ru: "настройки",
+            ua: "налаштування"
+        }
+    }
 
 
     return (
@@ -68,8 +85,9 @@ const Navigation = ({toggleModal}) => {
                     <div>
                         <PageLink collapsed={collapsed} active={active === "dashboard" ? 1 : 0} onClick={() => {setActive("dashboard"); setCollapsed(true); navigate("/")}} >
                             <StyledHome active={active === "dashboard" ? 1 : 0} />
-                            <h2>Schedule</h2>
+                            <h2>{langVar.schedule[lang]}</h2>
                         </PageLink>
+            
 
                     </div>
         
@@ -77,7 +95,7 @@ const Navigation = ({toggleModal}) => {
                         <span></span>
                         <PageLink type={'settings'} collapsed={collapsed} active={active === "settings" ? 1 : 0} onClick={() => {setActive("settings"); setCollapsed(true); navigate("/settings")}} >
                             <StyledSettings active={active === "settings" ? 1 : 0}  />
-                            <h2>Settings</h2>
+                            <h2>{langVar.settings[lang]}</h2>
                         </PageLink>
                     </Settings>
                 </NavigationLinks>
@@ -89,8 +107,12 @@ const Navigation = ({toggleModal}) => {
     )
 }
 
+const mapState = createStructuredSelector({
+    lang: SelectLanguage
+})
+
 const mapDispatch = dispatch => ({
     toggleModal: data => dispatch(ToggleModal(data))
 })
 
-export default connect(null,mapDispatch)(Navigation)
+export default connect(mapState,mapDispatch)(Navigation)

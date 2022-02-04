@@ -8,9 +8,12 @@ const Lines = styled.div`
     position: absolute;
     display: block;
     top: 0;
-    left: 0;
+
     left: 152px;
     z-index: -1;
+    @media screen and (max-width: 768px){
+        display: none;
+    }
 `
 
 const Line = styled.span`

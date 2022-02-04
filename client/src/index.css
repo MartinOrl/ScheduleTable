@@ -17,6 +17,12 @@ html, body{
   overflow-x: hidden;
 }
 
-.home{
-  display: flex;
+
+@media screen and (max-width: 768px){
+  body{
+    padding-left: 0
+  }
+  .master{
+    display: flex;
+  }
 }

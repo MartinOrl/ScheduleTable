@@ -7,6 +7,9 @@ export const MasterContainer = styled.div`
     padding-left: 96px;
     z-index: 4;
     position: relative;
+    @media screen and (max-width: 768px){
+        padding-left: 24px;
+    }
 `
 
 export const ChevronToggle = styled(Chevron)`
@@ -21,14 +24,14 @@ export const ChevronToggle = styled(Chevron)`
 `
 
 export const Collapse = styled.div`
-    max-height: ${props => props.collapse ? '256px' : '56px'};
+    max-height: ${props => props.collapse ? '480px' : '56px'};
     border: 1px solid white;
     border-radius: 8px;
 
     box-sizing: border-box;
     cursor: pointer;
     background: #000;
-    transition: 250ms ease-in-out;
+    transition: 400ms ease-in-out;
     overflow-y: hidden;
     position: relative;
     width: 256px;

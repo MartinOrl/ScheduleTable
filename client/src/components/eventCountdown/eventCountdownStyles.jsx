@@ -48,6 +48,12 @@ export const ComponentContainer = styled.div`
             border: 1px solid #5a5a5a;
         }
     }
+    @media screen and (max-width: 768px){
+        &>div{
+            width: 100%;
+            padding-bottom: 32px;
+        }
+    }
 `
 
 export const MasterContainer = styled.div`
@@ -59,5 +65,9 @@ export const MasterContainer = styled.div`
             font-size: 32px;
         }
         min-height: 240px;
+    }
+
+    @media screen and (max-width: 768px){
+        padding: 0 0 0 24px;
     }
 `

@@ -1,4 +1,4 @@
-
+import { Component } from 'react';
 
 import Navigation from './components/navigation/navigation';
 import { Routes, Route } from 'react-router';
@@ -8,19 +8,27 @@ import Settings from './pages/settings/settings';
 
 
 
+class App extends Component{
+  constructor(){
+    super()
+    this.state = {}
+  }
 
-function App() {
+  componentDidMount(){
+    
+  }
 
-  return (
-    <div>
-      <Navigation />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/settings" element={<Settings/>} />
-      </Routes>
-      
-    </div>
-  );
+  render(){
+    return(
+      <div className='master'>
+        <Navigation />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/settings" element={<Settings/>} />
+        </Routes>
+      </div>
+    )
+  }
 }
 
 

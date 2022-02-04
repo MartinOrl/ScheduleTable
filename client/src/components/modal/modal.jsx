@@ -10,30 +10,12 @@ import { CloseModal } from '../../redux/modalReducer/modalActions'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect'
 import { SelectLanguage } from '../../redux/langReducer/langSelectors'
+import { LessonInfoLanguages } from './../../data/languageMutations';
 
 
 
 const Modal = ({data,displayStatus, closeModal, lang}) => {
     const {room,teacher,type, time, fullName} = data
-    const langVar = {
-        event: [
-            {
-                "en": "Seminar",
-                "sk": "Cvičenie"
-            },
-            {
-                "en": "Lecture",
-                "sk": "Prednáška"
-            }
-        ],
-        connect: {
-            en: "Connect",
-            sk: "Pripojiť sa"
-        }
-    }
-
-
-   
 
     return (
         <ModalContainer displayStatus={displayStatus === "subject" ? 1 : 0} >
@@ -58,7 +40,7 @@ const Modal = ({data,displayStatus, closeModal, lang}) => {
                     <div>
                         <Category>
                             <School />
-                            <p>{type ? langVar.event[type-1][lang] : ''}</p>
+                            <p>{type ? LessonInfoLanguages.lessonTypes[type-1][lang] : ''}</p>
                         </Category>
                         <Category>
                             <Web />
@@ -70,7 +52,7 @@ const Modal = ({data,displayStatus, closeModal, lang}) => {
         
                 <span></span>
           
-                <p>{langVar.connect[lang]}</p>
+                <p>{LessonInfoLanguages.connect[lang]}</p>
             </ModalWindow>
             
         </ModalContainer>

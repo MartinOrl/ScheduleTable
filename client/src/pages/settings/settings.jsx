@@ -6,39 +6,54 @@ import { MasterContainer, Collapse, ChevronToggle } from './settingsStyles'
 import { connect } from 'react-redux';
 import { SetLanguage } from '../../redux/langReducer/langActions';
 
-const Settings = ({lang, setLanguage}) => {
+import { SettingsLanguages } from '../../data/languageMutations';
+import { SetGroup } from '../../redux/groupReducer/groupAction';
+import { SelectGroup } from '../../redux/groupReducer/groupSelectors';
 
-    const [collapse, setCollapse] = useState(false)
-    const [currentLang, setCurrentLang] = useState(lang)
+const Settings = ({lang, group, setLanguage, setGroup}) => {
 
-    const languages = {
-        "en": "English",
-        "sk": "Slovensky"
-    }
+    const [collapse, setCollapse] = useState("")
 
     return (
         <MasterContainer>
             <div>
-                <h2>{lang === "en" ? "Language" : "Jazyk"}</h2>
-                <Collapse collapse={collapse ? 1 : 0} onClick={() => setCollapse(!collapse)} >
-                    <p>{languages[currentLang]}</p>
+                <h2>{SettingsLanguages.langHeading[lang]}</h2>
+                <Collapse collapse={collapse === "language" ? 1 : 0} onClick={() => setCollapse(collapse === "language" ? "" : "language")} >
+                    <p>{SettingsLanguages.languageNames[lang]}</p>
                     <span></span>
-                    <p onClick={() => {setCurrentLang("en"); setLanguage("en")}} >English</p>
-                    <p onClick={() => {setCurrentLang("sk"); setLanguage("sk")}} >Slovensky</p>
-                    <ChevronToggle collapse={collapse ? 1 : 0} />
+                    <p onClick={() => {setLanguage("en")}} >English</p>
+                    <p onClick={() => {setLanguage("sk")}} >Slovensky</p>
+                    <p onClick={() => {setLanguage("ge")}} >Deutsch</p>
+                    <p onClick={() => {setLanguage("ru")}} >русский</p>
+                    <p onClick={() => {setLanguage("ua")}} >український</p>
+                    <ChevronToggle collapse={collapse === "language" ? 1 : 0} />
                 </Collapse>
-     
+            </div>
+            <div>
+                <h2>{SettingsLanguages.groupHeading[lang]}</h2>
+                <Collapse collapse={collapse === "group" ? 1 : 0} onClick={() => setCollapse(collapse === "group" ? "" : "group")} >
+                    <p>{group}</p>
+                    <span></span>
+                    <p onClick={() => {setGroup(51)}} >51</p>
+                    <p onClick={() => {setGroup(52)}} >52</p>
+                    <p onClick={() => {setGroup(53)}} >53</p>
+                    <p onClick={() => {setGroup(54)}} >54</p>
+                    <ChevronToggle collapse={collapse === "group" ? 1 : 0} />
+                </Collapse>
             </div>
         </MasterContainer>
     )
 };
 
 const mapState = createStructuredSelector({
-    lang: SelectLanguage
+    lang: SelectLanguage,
+    group: SelectGroup
 })
 
 const mapDispatch = dispatch => ({
-    setLanguage: language => dispatch(SetLanguage(language))
+    setLanguage: language => dispatch(SetLanguage(language)),
+    setGroup: group => dispatch(SetGroup(group))
+    
 })
 
 

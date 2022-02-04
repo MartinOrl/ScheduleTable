@@ -8,6 +8,16 @@ export const MasterContainer = styled.div`
     top: 0;
     width: 100%;
     min-height: 100vh;
+    @media screen and (max-width: 768px){
+        position: fixed;
+        width: 100vw;
+        z-index: 34;
+        top: unset;
+        bottom: 0;
+        left: 0;
+        height: 74px;
+        min-height: 74px;
+    }
 
 `
 
@@ -25,6 +35,15 @@ export const ComponentContainer = styled.div`
     z-index: 200;
     padding-bottom: 16px;
     box-sizing: border-box;
+    @media screen and (max-width: 768px){
+        height: 58px;
+        width: 100%;
+        top: unset;
+        left: 0;
+        bottom: 0;
+        min-height: unset;
+        padding-bottom: 0;
+    }
 `
 
 export const Background = styled.div`
@@ -37,6 +56,10 @@ export const Background = styled.div`
     z-index: ${props => props.collapsed ? -5 : 18};
     transition: 250ms ease-in-out;
     opacity: ${props => props.collapsed ? 0 : 1};
+    @media screen and (max-width: 768px){
+        display: none;
+    }
+
 `
 
 export const NavHead = styled.div`
@@ -54,19 +77,27 @@ export const NavHead = styled.div`
         overflow-x: hidden;
         transition: 250ms ease-in-out;
     }
+    @media screen and (max-width: 768px){
+        display: none;
+    }
 `
 
 export const NavSlider = styled.span`
-    height: 62px;
+    height: 60px;
     width: 4px;
     border-radius: 8px;
     background: #151515;
     display: block;
     position: absolute;
     left: 0px;
-    top: ${props => props.position >= 0 ?  props.position*62 + "px" : '92.6%'};
-
+    top: ${props => props.position >= 0 ?  props.position*56 + "px" : '92.6%'};
     transition: 250ms ease-in-out;
+    @media screen and (max-width: 768px){
+        top: 0;
+        width: 72px;
+        height: 4px;
+        left: ${props => props.position >= 0 ? "31.85%" : "50%"};
+    }
 `
 
 export const NavigationLinks = styled.div`
@@ -75,6 +106,10 @@ export const NavigationLinks = styled.div`
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    @media screen and (max-width: 768px){
+        justify-content: center;
+        flex-direction: row;
+    }
 
 `
 
@@ -102,6 +137,13 @@ export const PageLink = styled.div`
         height: 26px;
         margin-right: 16px;
     }
+
+    @media screen and (max-width: 768px){
+        width: 48px;
+        h2{
+            display: none;
+        }
+    }
 `
 
 export const StyledSettings = styled(SettingsLogo)`
@@ -127,7 +169,9 @@ export const Settings = styled.div`
         height: 2px;
         display: block;
         margin: 0 auto 16px;
-        
+        @media screen and (max-width: 768px){
+            display: none;
+        }
     }
     
 `

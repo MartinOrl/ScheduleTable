@@ -36,5 +36,15 @@ export const Componentcontainer = styled.div`
             border: 1px solid #5a5a5a;
         }
     }
+
+    @media screen and (max-width: 768px){
+        width: 100%;
+        height: ${props => props.width*120 +"px"};
+        margin: 0 0 16px;
+        div{
+            height: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+    }
     
 `
