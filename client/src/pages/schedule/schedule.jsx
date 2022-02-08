@@ -16,7 +16,7 @@ import { ScheduleLanguages } from '../../data/languageMutations'
 
 
 const Dummy = styled.div`
-    width: ${props => props.diff*80 + "px"};
+    width: ${props => props.diff*120 + "px"};
     margin-right: 16px;
 `
 
@@ -31,8 +31,8 @@ const ScheduleTable = ({toggleModal, lang, activeSubject, data}) => {
             {
                 data.BINFO_1.map(day => {
               
-                    // return <Week key={day.id} match={day.id.slice(0,3) === days[new Date(Date.now()).getDay()-1] ? 1 : 0} >
-                    return <Week key={day.id} match={day.id.slice(0,3) === "Mon" ? 1 : 0} >
+                    return <Week key={day.id} match={day.id.slice(0,3) === days[new Date(Date.now()).getDay()-1] ? 1 : 0} >
+                    {/* return <Week key={day.id} match={day.id.slice(0,3) === "Thu" ? 1 : 0} > */}
                         <h1>{day.lang_id[lang].slice(0,3)}</h1>
                         <div>
                             {

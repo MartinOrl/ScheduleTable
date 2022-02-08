@@ -38,6 +38,7 @@ const Settings = ({lang, group, setLanguage, setGroup}) => {
                     <p onClick={() => {setGroup(52)}} >52</p>
                     <p onClick={() => {setGroup(53)}} >53</p>
                     <p onClick={() => {setGroup(54)}} >54</p>
+                    <p onClick={() => {setGroup(55)}} >55</p>
                     <ChevronToggle collapse={collapse === "group" ? 1 : 0} />
                 </Collapse>
             </div>

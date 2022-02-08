@@ -4,15 +4,15 @@ const getTimestamp = () => {
 }
 
 export const processData = data => {
-    // const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+    const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
 
     console.log(data)
     
 
     for(let j = 0; j < data.BINFO_1.length; j++){
         let day = data.BINFO_1[j]
-        // if(day.id.slice(0,3) === days[new Date(Date.now()).getDay() - 1]){
-        if(day.id.slice(0,3) === "Mon"){
+        if(day.id.slice(0,3) === days[new Date(Date.now()).getDay() - 1]){
+        // if(day.id.slice(0,3) === "Thu"){
             let match = false
             for(let i = 0; i < day.subjects.length; i++){
                 let subject = day.subjects[i]
